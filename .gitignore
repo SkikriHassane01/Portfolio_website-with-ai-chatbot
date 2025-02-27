@@ -25,6 +25,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.venv
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -171,3 +172,7 @@ cython_debug/
 .pypirc
 node_modules/.bin/glob.cmd
 package-lock.json
+backend/mlruns/
+backend/models/
+.idea/
+.vscode
