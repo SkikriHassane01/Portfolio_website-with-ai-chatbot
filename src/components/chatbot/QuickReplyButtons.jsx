@@ -59,7 +59,7 @@ const QuickReplyButtons = ({ replies, onReplyClick }) => {
       opacity: 1,
       y: 0,
       transition: {
-        delay: 0.2,
+        delay: 0.1,
         when: 'beforeChildren',
         staggerChildren: 0.07
       }
@@ -82,28 +82,23 @@ const QuickReplyButtons = ({ replies, onReplyClick }) => {
   if (!replies || replies.length === 0) return null;
 
   return (
-    <div className="relative px-4 py-3 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+    <div className="bg-gray-50 dark:bg-gray-900 py-3 px-2 relative">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex items-center"
+        className="flex items-center relative"
       >
         {/* Left scroll button */}
-        {showNavigation && (
+        {showNavigation && canScrollLeft && (
           <motion.button
             onClick={() => scroll('left')}
-            className={`absolute left-1 z-10 p-1 rounded-full shadow-sm bg-white dark:bg-gray-800 ${
-              canScrollLeft 
-                ? 'opacity-100 text-gray-700 dark:text-gray-300' 
-                : 'opacity-0 cursor-default'
-            } transition-opacity`}
+            className="absolute left-0 z-10 p-1 rounded-full shadow-sm bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
             aria-label="Scroll left"
-            disabled={!canScrollLeft}
             initial={{ opacity: 0 }}
-            animate={{ opacity: canScrollLeft ? 1 : 0 }}
-            whileHover={canScrollLeft ? { scale: 1.1 } : {}}
-            whileTap={canScrollLeft ? { scale: 0.95 } : {}}
+            animate={{ opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronLeft className="h-4 w-4" />
           </motion.button>
@@ -112,8 +107,13 @@ const QuickReplyButtons = ({ replies, onReplyClick }) => {
         {/* Replies container */}
         <div
           ref={containerRef}
-          className="flex space-x-2 overflow-x-auto scrollbar-hide px-1 py-1 w-full"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex space-x-2 overflow-x-auto scrollbar-hide px-1 py-1 w-full mx-auto"
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            paddingLeft: canScrollLeft ? '20px' : '4px',
+            paddingRight: canScrollRight ? '20px' : '4px'
+          }}
         >
           {replies.map((reply, index) => (
             <motion.button
@@ -133,20 +133,15 @@ const QuickReplyButtons = ({ replies, onReplyClick }) => {
         </div>
         
         {/* Right scroll button */}
-        {showNavigation && (
+        {showNavigation && canScrollRight && (
           <motion.button
             onClick={() => scroll('right')}
-            className={`absolute right-1 z-10 p-1 rounded-full shadow-sm bg-white dark:bg-gray-800 ${
-              canScrollRight 
-                ? 'opacity-100 text-gray-700 dark:text-gray-300' 
-                : 'opacity-0 cursor-default'
-            } transition-opacity`}
+            className="absolute right-0 z-10 p-1 rounded-full shadow-sm bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
             aria-label="Scroll right"
-            disabled={!canScrollRight}
             initial={{ opacity: 0 }}
-            animate={{ opacity: canScrollRight ? 1 : 0 }}
-            whileHover={canScrollRight ? { scale: 1.1 } : {}}
-            whileTap={canScrollRight ? { scale: 0.95 } : {}}
+            animate={{ opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronRight className="h-4 w-4" />
           </motion.button>

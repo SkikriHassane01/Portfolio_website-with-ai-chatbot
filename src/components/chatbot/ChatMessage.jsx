@@ -39,6 +39,8 @@ const ChatMessage = ({ message, isLastBotMessage }) => {
     }
   };
 
+  
+
   return (
     <motion.div
       className={`flex items-start ${isBot ? 'justify-start' : 'justify-end'} w-full mb-4`}
