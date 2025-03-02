@@ -73,7 +73,7 @@ const ProjectCard = ({ project }) => {
     >
       {/* Project Image */}
       <div className="aspect-video overflow-hidden relative">
-        {image && image.startsWith('/assets') ? (
+        {image ? (
           <img
             src={image}
             alt={`${title} preview`}

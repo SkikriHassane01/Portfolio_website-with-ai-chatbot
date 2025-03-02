@@ -18,7 +18,7 @@ const CertificatesSection = () => {
       date: 'May 2024',
       description: 'Comprehensive certification covering SQL, Python, scikit-learn, and neural networks. Includes hands-on experience in data cleaning, visualization, hypothesis testing, and machine learning projects.',
       skills: ['Python', 'SQL', 'scikit-learn', 'Neural Networks', 'Data Cleaning', 'Visualization'],
-      image: '/assets/images/certificates/codecademy-ml.jpg',
+      image: 'https://miro.medium.com/v2/resize:fit:1400/1*c_fiB-YgbnMl6nntYGBMHQ.jpeg',
       verificationLink: 'https://www.codecademy.com/profiles/HassaneSkikri/certificates/8e9e59de3f924b33ad2371faf667129b',
       color: 'blue'
     },
@@ -29,7 +29,7 @@ const CertificatesSection = () => {
       date: 'November 2024',
       description: 'Advanced course focused on building and optimizing regression and classification models. Provided practical experience in solving real-world problems with machine learning techniques.',
       skills: ['Regression', 'Classification', 'Supervised Learning', 'Model Optimization'],
-      image: '/assets/images/certificates/coursera-supervised-ml.jpg',
+      image: 'https://emeritus.org/in/wp-content/uploads/sites/3/2023/01/What-is-machine-learning-Definition-types-768x386.jpg.webp',
       verificationLink: 'https://www.coursera.org/account/accomplishments/verify/3VXZF58EYKMR',
       color: 'purple'
     },
@@ -40,7 +40,7 @@ const CertificatesSection = () => {
       date: 'April 2024',
       description: 'Comprehensive Excel training covering advanced formulas, data analysis, visualization techniques, and business reporting.',
       skills: ['Microsoft Excel', 'Data Analysis', 'Business Reporting', 'Visualization'],
-      image: '/assets/images/certificates/coursera-excel.jpg',
+      image: 'https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2022/03/excel-logo-blue.jpg',
       verificationLink: 'https://www.coursera.org/account/accomplishments/verify/CVL3U8PS8XBE',
       color: 'green'
     },
@@ -51,30 +51,30 @@ const CertificatesSection = () => {
       date: 'March 2024',
       description: 'Comprehensive SQL course covering database design, complex queries, joins, aggregations, and database management.',
       skills: ['SQL', 'Database Design', 'Query Optimization', 'Data Manipulation'],
-      image: '/assets/images/certificates/codecademy-sql.jpg',
+      image: 'https://cdn.hackersandslackers.com/2022/06/SQLpt1.jpg',
       verificationLink: 'https://www.codecademy.com/profiles/HassaneSkikri/certificates/042a4e5884e3eb6ea1f2a12be6abb851',
       color: 'orange'
     },
-    {
-      id: 5,
-      title: 'Advanced Python Programming',
-      issuer: 'Udemy',
-      date: 'January 2024',
-      description: 'Advanced Python course covering OOP principles, design patterns, concurrency, and performance optimization techniques.',
-      skills: ['Python', 'Object-Oriented Programming', 'Design Patterns', 'Performance Optimization'],
-      verificationLink: '#',
-      color: 'blue'
-    },
-    {
-      id: 6,
-      title: 'Deep Learning Specialization',
-      issuer: 'Coursera',
-      date: 'December 2023',
-      description: 'Five-course specialization covering neural networks, deep learning, structuring ML projects, CNNs, and sequence models.',
-      skills: ['Deep Learning', 'Neural Networks', 'CNNs', 'RNNs', 'TensorFlow', 'Keras'],
-      verificationLink: '#',
-      color: 'purple'
-    }
+    // {
+    //   id: 5,
+    //   title: 'Advanced Python Programming',
+    //   issuer: 'Udemy',
+    //   date: 'January 2024',
+    //   description: 'Advanced Python course covering OOP principles, design patterns, concurrency, and performance optimization techniques.',
+    //   skills: ['Python', 'Object-Oriented Programming', 'Design Patterns', 'Performance Optimization'],
+    //   verificationLink: '#',
+    //   color: 'blue'
+    // }
+    // {
+    //   id: 6,
+    //   title: 'Deep Learning Specialization',
+    //   issuer: 'Coursera',
+    //   date: 'December 2023',
+    //   description: 'Five-course specialization covering neural networks, deep learning, structuring ML projects, CNNs, and sequence models.',
+    //   skills: ['Deep Learning', 'Neural Networks', 'CNNs', 'RNNs', 'TensorFlow', 'Keras'],
+    //   verificationLink: '#',
+    //   color: 'purple'
+    // }
   ];
 
   // Animation variants
@@ -156,10 +156,9 @@ const CertificatesSection = () => {
   // Function to get image source (with fallback to placeholder)
   const getImageSource = (certificate) => {
     // Try to use actual image, fallback to generated placeholder
-    try {
-      // Placeholder for testing - in production, this would be the actual image path check
-      return getRandomPlaceholderImage(certificate.issuer, certificate.color);
-    } catch (error) {
+    if (certificate.image) {
+      return `url(${certificate.image})`;
+    } else {
       return getRandomPlaceholderImage(certificate.issuer, certificate.color);
     }
   };
@@ -207,19 +206,24 @@ const CertificatesSection = () => {
             >
               <div className="flex flex-col h-full">
                 {/* Certificate Image */}
-                <div className="aspect-[3/2] overflow-hidden relative">
+                <div className="aspect-[16/9] overflow-hidden relative group">
                   <div 
-                    className="w-full h-full bg-cover bg-center flex items-center justify-center"
+                    className="w-full h-full bg-contain bg-center flex items-center justify-center"
                     style={{ 
-                      background: getImageSource(certificate)
+                      backgroundImage: getImageSource(certificate),
+                      backgroundColor: '#f0f4f8'
                     }}
                     aria-label={`${certificate.title} certificate`}
                   >
-                    <div className="text-white text-5xl font-bold opacity-30">
-                      {certificate.issuer.slice(0, 2).toUpperCase()}
-                    </div>
+                    {!certificate.image && (
+                      <div className="text-white text-5xl font-bold opacity-30">
+                        {certificate.issuer.slice(0, 2).toUpperCase()}
+                      </div>
+                    )}
+                    {/* Purple overlay with hover effect - more subtle */}
+                    <div className="absolute inset-0 bg-purple-600/30 mix-blend-overlay transition-opacity duration-300 group-hover:opacity-40"></div>
                   </div>
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-gray-900/30"></div>
+                  <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
                 </div>
 
                 {/* Certificate Content */}
@@ -337,18 +341,25 @@ const CertificatesSection = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col md:flex-row h-full max-h-[90vh]">
-                {/* Left side - Image */}
+                {/* Left side - Issuer and Date instead of Image */}
                 <div className="w-full md:w-2/5 relative overflow-hidden bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
                   <div 
                     className="w-full h-full flex items-center justify-center"
                     style={{
-                      background: getImageSource(selectedCertificate),
+                      background: getRandomPlaceholderImage(selectedCertificate.issuer, selectedCertificate.color),
                       minHeight: '200px',
-                      height: '100%'
+                      height: '100%',
+                      position: 'relative'
                     }}
                     aria-label={`${selectedCertificate.title} certificate`}
                   >
-                    <div className="flex flex-col items-center justify-center text-white p-4">
+                    {selectedCertificate.image && (
+                      <div 
+                        className="absolute inset-0 opacity-20 bg-center bg-contain bg-no-repeat" 
+                        style={{ backgroundImage: `url(${selectedCertificate.image})` }}
+                      />
+                    )}
+                    <div className="flex flex-col items-center justify-center text-white p-4 relative z-10">
                       <Award className="w-16 h-16 mb-4 opacity-80" />
                       <div className="text-4xl font-bold text-center">
                         {selectedCertificate.issuer}

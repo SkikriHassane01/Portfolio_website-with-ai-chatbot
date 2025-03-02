@@ -8,6 +8,7 @@ import CertificatesSection from './components/sections/Certificates';
 import ContactSection from './components/sections/Contact';  
 import Footer from './components/layout/Footer';
 import ChatWindow from './components/chatbot/ChatWindow';
+import TechSphere from './components/sections/TechSphere';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Navbar />
         <main>
           <AboutSection />
+          <TechSphere />
           <ProjectsSection/>
           <SkillsSection/>
           <CertificatesSection/>

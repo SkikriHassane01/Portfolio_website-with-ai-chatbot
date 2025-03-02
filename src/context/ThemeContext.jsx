@@ -6,14 +6,35 @@ export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
-      return saved ? JSON.parse(saved) : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // Handle different possible stored values
+      if (saved) {
+        // Handle string values like "dark" or "light"
+        if (saved === "dark") {
+          return true;
+        } else if (saved === "light") {
+          return false;
+        }
+        
+        // Try to parse as JSON for boolean values
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          // If parsing fails, use system preference
+          console.warn('Invalid theme value in localStorage');
+        }
+      }
+      
+      // Default to system preference if no valid saved value
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
     return false;
   });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', JSON.stringify(isDark));
+      // Store as a simple string instead of JSON
+      localStorage.setItem('theme', isDark ? "dark" : "light");
       document.documentElement.classList.toggle('dark', isDark);
     }
   }, [isDark]);

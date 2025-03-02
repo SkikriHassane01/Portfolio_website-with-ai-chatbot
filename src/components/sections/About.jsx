@@ -73,7 +73,7 @@ const AboutSection = () => {
             >
               <div className="aspect-square w-72 h-72 overflow-hidden rounded-full border-4 border-blue-100 dark:border-blue-900/30">
                 <img
-                  src="../assets/images/About_photo.png"
+                  src="../assets/About/About_photo.png"
                   alt="Hassane SKIKRI"
                   className="w-full h-full object-cover object-center"
                 />
@@ -150,6 +150,7 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 }}
+              className="p-6 rounded-lg bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm shadow-sm border border-gray-100 dark:border-gray-800"
             >
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 I'm a data science enthusiast and computer Science student at École Nationale des Sciences 

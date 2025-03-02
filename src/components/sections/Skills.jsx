@@ -76,12 +76,14 @@ const SkillCategory = ({ title, skills, icon, color, isOpen, toggle }) => {
 const SkillsSection = () => {
   // State to track which categories are open
   const [openCategories, setOpenCategories] = useState({
-    datascience: true,
-    machinelearning: true,
-    programming: false,
-    webdev: false,
-    deployment: false,
-    databases: false
+    mathstats: true,
+    programming: true,
+    datacollection: false,
+    dataanalysis: false,
+    machinelearning: false,
+    deeplearning: false,
+    nlp: false,
+    mlops: false
   });
 
   const toggleCategory = (category) => {
@@ -94,84 +96,121 @@ const SkillsSection = () => {
   // Skill categories with their respective skills
   const skillCategories = [
     {
-      id: 'datascience',
-      title: 'Data Science',
+      id: 'mathstats',
+      title: 'Mathematics & Statistics',
       icon: <BarChart className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />,
       color: 'bg-indigo-100 dark:bg-indigo-900/30',
       skills: [
-        { name: 'Data Cleaning', level: 'Expert', color: '#4C51BF' },
-        { name: 'Data Visualization', level: 'Expert', color: '#4C51BF' },
-        { name: 'Feature Engineering', level: 'Advanced', color: '#4C51BF' },
-        { name: 'Statistical Analysis', level: 'Advanced', color: '#4C51BF' },
-        { name: 'Pandas', level: 'Expert', color: '#4C51BF' },
-        { name: 'Matplotlib', level: 'Advanced', color: '#4C51BF' },
-        { name: 'Seaborn', level: 'Advanced', color: '#4C51BF' },
-        { name: 'Tableau', level: 'Intermediate', color: '#4C51BF' }
+        { name: 'Linear Algebra', level: 'Advanced', color: '#4C51BF' },
+        { name: 'Calculus', level: 'Advanced', color: '#4C51BF' },
+        { name: 'Probability', level: 'Advanced', color: '#4C51BF' },
+        { name: 'Statistical Analysis', level: 'Expert', color: '#4C51BF' },
+        { name: 'Hypothesis Testing', level: 'Advanced', color: '#4C51BF' }
+      ]
+    },
+    {
+      id: 'programming',
+      title: 'Programming & Development',
+      icon: <Code className="h-5 w-5 text-green-600 dark:text-green-400" />,
+      color: 'bg-green-100 dark:bg-green-900/30',
+      skills: [
+        { name: 'Python', level: 'Expert', color: '#38A169' },
+        { name: 'C/C++/C#/Java', level: 'Advanced', color: '#38A169' },
+        { name: 'SQL', level: 'Expert', color: '#38A169' },
+        { name: 'NOSQL', level: 'Advanced', color: '#38A169' },
+        { name: 'Shell Scripting', level: 'Intermediate', color: '#38A169' },
+        { name: 'Git & Version Control', level: 'Expert', color: '#38A169' },
+        { name: 'Unit Testing', level: 'Advanced', color: '#38A169' },
+        { name: 'Software Design Patterns', level: 'Intermediate', color: '#38A169' }
+      ]
+    },
+    {
+      id: 'datacollection',
+      title: 'Data Collection & Preprocessing',
+      icon: <Database className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />,
+      color: 'bg-yellow-100 dark:bg-yellow-900/30',
+      skills: [
+        { name: 'Spark', level: 'Intermediate', color: '#D69E2E' },
+        { name: 'Hadoop', level: 'Intermediate', color: '#D69E2E' },
+        { name: 'Data Warehousing', level: 'Intermediate', color: '#D69E2E' },
+        { name: 'Web Scraping', level: 'Advanced', color: '#D69E2E' },
+        { name: 'API Integration', level: 'Advanced', color: '#D69E2E' },
+        { name: 'Database Queries', level: 'Expert', color: '#D69E2E' },
+        { name: 'ETL Pipelines', level: 'Intermediate', color: '#D69E2E' },
+        { name: 'Data Cleaning', level: 'Expert', color: '#D69E2E' },
+        { name: 'Feature Engineering', level: 'Expert', color: '#D69E2E' },
+        { name: 'Data Augmentation', level: 'Advanced', color: '#D69E2E' },
+        { name: 'Dimensionality Reduction', level: 'Advanced', color: '#D69E2E' }
+      ]
+    },
+    {
+      id: 'dataanalysis',
+      title: 'Data Analysis & Visualization',
+      icon: <BarChart className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
+      color: 'bg-blue-100 dark:bg-blue-900/30',
+      skills: [
+        { name: 'Exploratory Data Analysis (EDA)', level: 'Expert', color: '#3182CE' },
+        { name: 'Data Visualization', level: 'Expert', color: '#3182CE' },
+        { name: 'Dashboard Creation', level: 'Advanced', color: '#3182CE' },
+        { name: 'A/B Testing', level: 'Advanced', color: '#3182CE' }
       ]
     },
     {
       id: 'machinelearning',
       title: 'Machine Learning',
-      icon: <Eye className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
-      color: 'bg-blue-100 dark:bg-blue-900/30',
-      skills: [
-        { name: 'Scikit-learn', level: 'Advanced', color: '#3182CE' },
-        { name: 'TensorFlow', level: 'Advanced', color: '#3182CE' },
-        { name: 'Keras', level: 'Advanced', color: '#3182CE' },
-        { name: 'Computer Vision', level: 'Advanced', color: '#3182CE' },
-        { name: 'Natural Language Processing', level: 'Intermediate', color: '#3182CE' },
-        { name: 'Gradient Boosting', level: 'Advanced', color: '#3182CE' },
-        { name: 'Hyperparameter Tuning', level: 'Advanced', color: '#3182CE' },
-        { name: 'OpenCV', level: 'Advanced', color: '#3182CE' }
-      ]
-    },
-    {
-      id: 'programming',
-      title: 'Programming Languages',
-      icon: <Code className="h-5 w-5 text-green-600 dark:text-green-400" />,
-      color: 'bg-green-100 dark:bg-green-900/30',
-      skills: [
-        { name: 'Python', level: 'Expert', color: '#38A169' },
-        { name: 'SQL', level: 'Advanced', color: '#38A169' },
-        { name: 'C/C++', level: 'Intermediate', color: '#38A169' },
-        { name: 'Java', level: 'Intermediate', color: '#38A169' },
-        { name: 'JavaScript', level: 'Intermediate', color: '#38A169' },
-        { name: 'C#', level: 'Beginner', color: '#38A169' }
-      ]
-    },
-    {
-      id: 'webdev',
-      title: 'Web Development',
-      icon: <Globe className="h-5 w-5 text-purple-600 dark:text-purple-400" />,
+      icon: <Eye className="h-5 w-5 text-purple-600 dark:text-purple-400" />,
       color: 'bg-purple-100 dark:bg-purple-900/30',
       skills: [
-        { name: 'HTML/CSS', level: 'Intermediate', color: '#805AD5' },
-        { name: 'React.js', level: 'Intermediate', color: '#805AD5' },
-        { name: 'Flask', level: 'Intermediate', color: '#805AD5' },
-        { name: 'Streamlit', level: 'Advanced', color: '#805AD5' }
+        { name: 'Supervised Learning', level: 'Expert', color: '#805AD5' },
+        { name: 'Unsupervised Learning', level: 'Advanced', color: '#805AD5' },
+        { name: 'Hyperparameter Tuning', level: 'Expert', color: '#805AD5' },
+        { name: 'Evaluation Metrics', level: 'Expert', color: '#805AD5' },
+        { name: 'Ensemble Methods', level: 'Advanced', color: '#805AD5' }
       ]
     },
     {
-      id: 'deployment',
-      title: 'Deployment',
+      id: 'deeplearning',
+      title: 'Deep Learning',
       icon: <Server className="h-5 w-5 text-red-600 dark:text-red-400" />,
       color: 'bg-red-100 dark:bg-red-900/30',
       skills: [
-        { name: 'Docker', level: 'Intermediate', color: '#E53E3E' },
-        { name: 'AWS (EC2)', level: 'Intermediate', color: '#E53E3E' },
-        { name: 'Heroku', level: 'Advanced', color: '#E53E3E' },
-        { name: 'Microsoft Azure', level: 'Beginner', color: '#E53E3E' }
+        { name: 'Neural Network Architectures', level: 'Advanced', color: '#E53E3E' },
+        { name: 'Convolutional Neural Networks (CNN)', level: 'Advanced', color: '#E53E3E' },
+        { name: 'Recurrent Neural Networks (RNN, LSTM, GRU)', level: 'Advanced', color: '#E53E3E' },
+        { name: 'Transformers', level: 'Intermediate', color: '#E53E3E' },
+        { name: 'Transfer Learning', level: 'Advanced', color: '#E53E3E' },
+        { name: 'Generative Models', level: 'Intermediate', color: '#E53E3E' },
+        { name: 'Autoencoders', level: 'Intermediate', color: '#E53E3E' }
       ]
     },
     {
-      id: 'databases',
-      title: 'Databases',
-      icon: <Database className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />,
-      color: 'bg-yellow-100 dark:bg-yellow-900/30',
+      id: 'nlp',
+      title: 'Natural Language Processing',
+      icon: <Globe className="h-5 w-5 text-teal-600 dark:text-teal-400" />,
+      color: 'bg-teal-100 dark:bg-teal-900/30',
       skills: [
-        { name: 'SQL (PL/SQL, Oracle)', level: 'Advanced', color: '#D69E2E' },
-        { name: 'MongoDB', level: 'Beginner', color: '#D69E2E' },
-        { name: 'Firebase', level: 'Intermediate', color: '#D69E2E' }
+        { name: 'Text Preprocessing', level: 'Advanced', color: '#38B2AC' },
+        { name: 'Word Embeddings', level: 'Advanced', color: '#38B2AC' },
+        { name: 'Sentiment Analysis', level: 'Advanced', color: '#38B2AC' },
+        { name: 'Named Entity Recognition', level: 'Intermediate', color: '#38B2AC' },
+        { name: 'Machine Translation', level: 'Intermediate', color: '#38B2AC' },
+        { name: 'Question Answering', level: 'Intermediate', color: '#38B2AC' },
+        { name: 'Large Language Models', level: 'Intermediate', color: '#38B2AC' }
+      ]
+    },
+    {
+      id: 'mlops',
+      title: 'MLOps & Deployment',
+      icon: <Server className="h-5 w-5 text-orange-600 dark:text-orange-400" />,
+      color: 'bg-orange-100 dark:bg-orange-900/30',
+      skills: [
+        { name: 'Model Versioning', level: 'Intermediate', color: '#DD6B20' },
+        { name: 'Experiment Tracking', level: 'Intermediate', color: '#DD6B20' },
+        { name: 'Data Version Control (DVC)', level: 'Intermediate', color: '#DD6B20' },
+        { name: 'Containerization (Docker)', level: 'Intermediate', color: '#DD6B20' },
+        { name: 'CI/CD Pipelines', level: 'Intermediate', color: '#DD6B20' },
+        { name: 'API Development (Flask, FastAPI)', level: 'Advanced', color: '#DD6B20' },
+        { name: 'Cloud Platforms (AWS, Azure)', level: 'Intermediate', color: '#DD6B20' }
       ]
     }
   ];
