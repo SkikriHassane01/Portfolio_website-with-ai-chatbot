@@ -73,7 +73,7 @@ const AboutSection = () => {
             >
               <div className="aspect-square w-72 h-72 overflow-hidden rounded-full border-4 border-blue-100 dark:border-blue-900/30">
                 <img
-                  src="../assets/About/About_photo.png"
+                  src="../assets/images/About_photo.png"
                   alt="Hassane SKIKRI"
                   className="w-full h-full object-cover object-center"
                 />
